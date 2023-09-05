@@ -1,0 +1,29 @@
+name: 'Veracode GitHub Checks'
+description: 'Create GitHub Checks for Veracode Scans'
+author: 'Vincent Deng'
+inputs:
+  repo:
+    description: 'the target `owner/repo` to manage the check run on (defaults to the current repository'
+    required: false
+  sha:
+    description: 'the target commit''s SHA (defaults to the current commit)'
+    required: false
+  token:
+    description: 'your GITHUB_TOKEN'
+    required: true
+  name:
+    description: 'the name of the check to create (incompatible with `check_id`)'
+    required: false
+  status:
+    description: 'the status of your check'
+    required: false
+    default: in_progress
+  details_url:
+    description: 'a URL with more details about your check, will be overriden by `action_url` depending on context'
+    required: false
+outputs:
+  check_id:
+    description: 'the ID of the created check, useful to update it in another action'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
